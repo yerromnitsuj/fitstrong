@@ -1,0 +1,62 @@
+<%- include('partials/head') %>
+
+<%
+function formatTime(iso) {
+  if (!iso) return '';
+  const match = iso.match(/PT(?:(\d+)H)?(?:(\d+)M)?/);
+  if (!match) return '';
+  const hours = parseInt(match[1] || 0);
+  const mins = parseInt(match[2] || 0);
+  if (hours && mins) return `${hours}h ${mins}m`;
+  if (hours) return `${hours}h`;
+  return `${mins}m`;
+}
+%>
+
+<section class="hero">
+  <div class="hero__container">
+    <h1 class="hero__title">FitStrong <span class="hero__title-accent">Kitchen</span></h1>
+    <p class="hero__tagline">High-protein recipes that do not taste like punishment.</p>
+    <p class="hero__description">Meal prep guides, macro-friendly dinners, and performance nutrition from a trainer who actually cooks. Every recipe lists full macros, real ingredients, and honest cook times.</p>
+  </div>
+</section>
+
+<section class="recipes">
+  <div class="recipes__container">
+    <div class="recipe-grid">
+      <% recipes.forEach((recipe, i) => { %>
+      <a href="/recipes/<%= recipe.slug %>" class="recipe-card <%= i === 0 ? 'recipe-card--featured' : '' %>">
+        <div class="recipe-card__image-wrap">
+          <img src="<%= recipe.image %>" alt="<%= recipe.name %>" class="recipe-card__image" loading="<%= i < 3 ? 'eager' : 'lazy' %>">
+          <span class="recipe-card__tag"><%= recipe.recipeCuisine %></span>
+          <% if (recipe.nutrition && recipe.nutrition.proteinContent) { %>
+          <span class="recipe-card__protein"><%= recipe.nutrition.proteinContent %> protein</span>
+          <% } %>
+        </div>
+        <div class="recipe-card__body">
+          <h2 class="recipe-card__title"><%= recipe.name %></h2>
+          <p class="recipe-card__headline"><%= recipe.headline %></p>
+          <div class="recipe-card__meta">
+            <span><%= formatTime(recipe.totalTime) %></span>
+            <span><%= recipe.difficulty %></span>
+            <span><%= recipe.recipeYield %></span>
+          </div>
+        </div>
+      </a>
+      <% }); %>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="cta__container">
+    <h2 class="cta__title">Get the weekly meal prep plan</h2>
+    <p class="cta__text">New recipes, macro breakdowns, and prep guides every Sunday.</p>
+    <form class="cta__form" onsubmit="event.preventDefault(); this.querySelector('button').textContent = 'You are in.'; this.querySelector('button').disabled = true;">
+      <input type="email" placeholder="Your email" class="cta__input" required>
+      <button type="submit" class="cta__button">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <% if (typeof metaDescription !== 'undefined' && metaDescription) { %>
+  <meta name="description" content="<%= metaDescription %>">
+  <% } %>
+  <% if (typeof canonicalUrl !== 'undefined' && canonicalUrl) { %>
+  <link rel="canonical" href="<%= canonicalUrl %>">
+  <% } %>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="<%= typeof ogType !== 'undefined' ? ogType : 'website' %>">
+  <meta property="og:title" content="<%= title %>">
+  <% if (typeof metaDescription !== 'undefined' && metaDescription) { %>
+  <meta property="og:description" content="<%= metaDescription %>">
+  <% } %>
+  <% if (typeof ogImage !== 'undefined' && ogImage) { %>
+  <meta property="og:image" content="<%= ogImage %>">
+  <% } %>
+  <% if (typeof canonicalUrl !== 'undefined' && canonicalUrl) { %>
+  <meta property="og:url" content="<%= canonicalUrl %>">
+  <% } %>
+  <meta property="og:site_name" content="FitStrong Kitchen">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="<%= title %>">
+  <% if (typeof metaDescription !== 'undefined' && metaDescription) { %>
+  <meta name="twitter:description" content="<%= metaDescription %>">
+  <% } %>
+  <% if (typeof ogImage !== 'undefined' && ogImage) { %>
+  <meta name="twitter:image" content="<%= ogImage %>">
+  <% } %>
+
+  <!-- Recipy verification -->
+  <meta name="recipy-site-verification" content="fitstrong-kitchen">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav__container">
+      <a href="/" class="nav__logo">
+        <span class="nav__logo-icon">&#9889;</span>
+        FitStrong <span class="nav__logo-accent">Kitchen</span>
+      </a>
+      <div class="nav__links">
+        <a href="/" class="nav__link <%= currentPath === '/' ? 'nav__link--active' : '' %>">Recipes</a>
+        <a href="/about" class="nav__link <%= currentPath === '/about' ? 'nav__link--active' : '' %>">About</a>
+      </div>
+    </div>
+  </nav>
+  <main>
