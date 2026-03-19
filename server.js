@@ -27,8 +27,8 @@ app.get('/sitemap.xml', (req, res) => {
   const today = new Date().toISOString().split('T')[0];
 
   const staticPages = [
-    { loc: '/', changefreq: 'weekly', priority: '0.5' },
-    { loc: '/about', changefreq: 'monthly', priority: '0.5' },
+    { loc: '/', changefreq: 'weekly', priority: '1.0' },
+    { loc: '/about', changefreq: 'monthly', priority: '0.7' },
   ];
 
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
@@ -62,6 +62,7 @@ app.get('/', (req, res) => {
   const baseUrl = getBaseUrl(req);
   res.render('index', {
     title: 'FitStrong Kitchen — High-Protein Recipes & Meal Prep',
+    metaDescription: 'High-protein recipes and meal prep guides from a NASM-certified trainer. Macro-friendly dinners, post-workout meals, and bulk cooking with full nutrition data.',
     recipes,
     currentPath: '/',
     canonicalUrl: `${baseUrl}/`,
