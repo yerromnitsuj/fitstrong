@@ -9,6 +9,15 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Redirect .onrender.com to canonical domain
+app.use((req, res, next) => {
+  const host = req.get('host') || '';
+  if (host.endsWith('.onrender.com')) {
+    return res.redirect(301, `https://fitstrong.org${req.originalUrl}`);
+  }
+  next();
+});
+
 function getBaseUrl(req) {
   const protocol = req.headers['x-forwarded-proto'] || req.protocol;
   return `${protocol}://${req.get('host')}`;
