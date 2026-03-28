@@ -15,14 +15,37 @@ function formatTime(iso) {
 
 <section class="hero">
   <div class="hero__container">
-    <h1 class="hero__title">FitStrong <span class="hero__title-accent">Kitchen</span></h1>
-    <p class="hero__tagline">High-protein recipes that do not taste like punishment.</p>
-    <p class="hero__description">Meal prep guides, macro-friendly dinners, and performance nutrition from a trainer who actually cooks. Every recipe lists full macros, real ingredients, and honest cook times.</p>
+    <div class="hero__text">
+      <h1 class="hero__title">FitStrong <span class="hero__title-accent">Kitchen</span></h1>
+      <p class="hero__tagline">High-protein recipes that do not taste like punishment.</p>
+      <p class="hero__description">Meal prep guides, macro-friendly dinners, and performance nutrition from a trainer who actually cooks. Every recipe lists full macros, real ingredients, and honest cook times.</p>
+      <div class="hero__stats">
+        <div class="hero__stat">
+          <span class="hero__stat-value"><%= recipes.length %></span>
+          <span class="hero__stat-label">Recipes</span>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-value">30g+</span>
+          <span class="hero__stat-label">Protein/Serving</span>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-value">40min</span>
+          <span class="hero__stat-label">Avg Cook Time</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero__image">
+      <img src="/images/marcus-cole.png" alt="Marcus Cole, NASM-certified trainer and creator of FitStrong Kitchen" class="hero__photo">
+    </div>
   </div>
 </section>
 
 <section class="recipes">
   <div class="recipes__container">
+    <div class="recipes__header">
+      <h2 class="recipes__section-title">All Recipes</h2>
+      <p class="recipes__section-subtitle">Every recipe includes full macro breakdowns, grocery-store ingredients, and honest cook times.</p>
+    </div>
     <div class="recipe-grid">
       <% recipes.forEach((recipe, i) => { %>
       <a href="/recipes/<%= recipe.slug %>" class="recipe-card <%= i === 0 ? 'recipe-card--featured' : '' %>">
